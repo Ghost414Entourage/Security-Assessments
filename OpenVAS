@@ -1,0 +1,61 @@
+Getting Started with OpenVAS
+
+OpenVAS, by Greenbone Networks, is a publicly available vulnerability scanner. Greenbone Networks has an entire Vulnerability Manager, part of which is the OpenVAS scanner. Greenbone's Vulnerability Manager is also open to the public and free to use. OpenVAS has the capabilities to perform network scans, including authenticated and unauthenticated testing.
+
+
+We will get started with using OpenVAS by following the installation instruction below for Parrot Security. The tool is pre-installed on the host provided in a later chapter.
+
+Installing Package
+
+First, we can start by installing the tool:
+
+$ sudo apt-get update && apt-get -y full-upgrade
+[!bash!]$ sudo apt-get install gvm && openvas
+Next, to begin the installation process, we can run the following command below:
+
+$ gvm-setup
+
+Finally, we can start OpenVas:
+
+$ gvm-start
+
+Note: The VM provided in the OpenVAS Skills Assessment chapter has OpenVAS pre-installed and the targets running. You can go to that chapter and start the VM (click "Spawn target") and use OpenVAS throughout the course, which can be accessed at https://< IP >:8080. The OpenVAS credentials are: htb-student:HTB_@cademy_student!. You may also use these credentials to SSH into the target VM to configure OpenVAS.
+
+
+
+The OpenVAS Greenbone Security Assistant application has various tabs that you can interact with. For this chapter, we will be digging into the scans. If you navigate to the Scans tab shown below, you will see the scans that have run in the past. You will also be able to see how to create a new task to run a scan. The tasks work off of the scanning configurations that the user sets up.
+
+Note: The scans shown in this chapter have already been pre-run to save you the time of waiting for them to finish. If you re-run the scan, it's best to go through vulnerabilities as they come, instead of waiting for the scan to finish, as they can take 1-2 hours to finish.
+
+
+Configuration
+
+Before setting up any scans, it is best to configure the targets for the scan. If you navigate to the Configurations tab and select Targets, you will see targets that have been already added to the application.
+
+To add your own, click the icon highlighted below and add an individual target or a host list. You also can configure other options such as the ports, authentication, and methods of identifying if the host is reachable. For the Alive Test, the Scan Config Default option from OpenVAS leverages the NVT Ping Host in the NVT Family.
+
+https://docs.greenbone.net/GSM-Manual/gos-22.04/en/scanning.html#creating-a-target
+
+Typically, an authenticated scan leverages a high privileged user such as root or Administrator. Depending on the permission level for the user, if it's the highest permission level, you'll retrieve the maximum amount of information back from the host in regards to the vulnerabilities present since you would have full access.
+
+Note: To run a credentialed scan on the target, use the following credentials: htb-student_adm:HTB_@cademy_student! for Linux, and administrator:Academy_VA_adm1! for Windows. These scans have already been set up in the OpenVAS target to save you time.
+
+
+Setting Up a Scan
+
+Multiple scan configurations leverage OpenVAS Network Vulnerability Test (NVT) Families, which consist of many different categories of vulnerabilities, such as ones for Windows, Linux, Web Applications, etc.
+
+OpenVAS has various scan configurations to choose from for scanning a network. We recommend only leveraging the ones below, as other options could cause system disruptions on a network:
+
+Base: This scan configuration is meant to enumerate information about the host's status and operating system information. This scan configuration does not check for vulnerabilities.
+
+Discovery: This scan configuration is meant to enumerate information about the system. The configuration identifies the host's services, hardware, accessible ports, and software being used on the system. This scan configuration also does not check for vulnerabilities.
+
+Host Discovery: This scan configuration solely tests whether the host is alive and determines what devices are active on the network. This scan configuration does not check for vulnerabilities as well. OpenVAS leverages ping to identify if the host is alive.
+
+System Discovery: This scan enumerates the target host further than the 'Discovery Scan' and attempts to identify the operating system and hardware associated with the host.
+
+Full and fast: This configuration is recommended by OpenVAS as the safest option and leverages intelligence to use the best NVT checks for the host(s) based on the accessible ports.
+
+
+
