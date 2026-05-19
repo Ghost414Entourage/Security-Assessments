@@ -19,6 +19,8 @@ Finally, we can start OpenVas:
 
 $ gvm-start
 
+gvm-check-setup
+
 Note: The VM provided in the OpenVAS Skills Assessment chapter has OpenVAS pre-installed and the targets running. You can go to that chapter and start the VM (click "Spawn target") and use OpenVAS throughout the course, which can be accessed at https://< IP >:8080. The OpenVAS credentials are: htb-student:HTB_@cademy_student!. You may also use these credentials to SSH into the target VM to configure OpenVAS.
 
 
